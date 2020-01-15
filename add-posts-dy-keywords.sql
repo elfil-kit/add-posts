@@ -18,7 +18,7 @@ CREATE TABLE keywordslist(
 	PRIMARY KEY (ID)
 ) DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1000;
 
-INSERT INTO keywordslist(keyword) VALUES ('boromir'),('boromir2'),('boromir 3'),('boromir 4'),('boromir 5'),('boromir 6'),('boromir 7'); 
+INSERT INTO keywordslist(keyword) VALUES ('boromir'),('boromir2'),('boromir 3'),('boromir 4'),('boromir 5'),('boromir 6'),('boromir 7'),('boromir8'),('boromir 9'),('boromir 10'),('boromir 11'),('boromir 12'),('boromir 13');
 
 INSERT INTO wp_posts (id, post_name, guid, post_title, post_content,post_excerpt,
 post_author,post_date,post_date_gmt,post_status,comment_status,ping_status,post_modified,post_modified_gmt,post_parent,menu_order,post_type,
@@ -43,4 +43,16 @@ SELECT id,'_su_description', Concat('Lorem ipsum', keyword ,'lorem lorem lorem b
 FROM keywordslist;
 INSERT INTO wp_postmeta (post_id,meta_key, meta_value)
 SELECT id,'_su_rich_snippet_type', 'none'
+FROM keywordslist;
+
+#Add category
+INSERT INTO wp_terms(name,slug,term_id,term_group)
+VALUES ('blog','blog','100','0');
+
+INSERT INTO wp_term_taxonomy(term_taxonomy_id,term_id,taxonomy,description,parent,count)
+VALUES ('100','100','category','','0','0');
+
+#Add posts to category
+INSERT INTO wp_term_relationships (object_id,term_taxonomy_id)
+SELECT id,'100'
 FROM keywordslist;
