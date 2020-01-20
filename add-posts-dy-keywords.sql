@@ -19,14 +19,14 @@ CREATE TABLE keywordslist(
 	PRIMARY KEY (ID)
 ) DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1000;
 
-INSERT INTO keywordslist(keyword1,keyword2) VALUES ('sports betting','kubeti michezo'),('sport betting','kubeti mchezo'),('betting online','beti mtandaoni'),('online betting','kubeti mtandaoni');
+INSERT INTO keywordslist(keyword1,keyword2) VALUES ('sports betting','kubeti michezo'),('sport betting','kubeti mchezo'),('betting online','beti mtandaoni');
 
 INSERT INTO wp_posts (id, post_name, guid, post_title, post_content,post_excerpt,
 post_author,post_date,post_date_gmt,post_status,comment_status,ping_status,post_modified,post_modified_gmt,post_parent,menu_order,post_type,
 comment_count,to_ping,pinged,post_content_filtered)
 SELECT
 id,
-CONCAT('[:en]',keyword1,'[:sw]',keyword2,'[:]'),
+keyword1,
 Concat('http://localhost/?p=',keyword1),
 CONCAT('[:en]',keyword1 ,' Online in Tanzania - Best Betting Site | Place a bet with legal bookmaker[:sw]', keyword2 , 'mitandaoni Tanzania - Kubeti michezo mitandaoni Tanzania[:]'),
 Concat('[:en]
@@ -126,7 +126,8 @@ comment_count,to_ping,pinged,''
 FROM keywordslist;
 
 UPDATE wp_posts
-SET guid = REPLACE(guid, ' ', '-');
+SET guid = REPLACE(guid, ' ', '-'),
+SET post_name = REPLACE(post_name, ' ', '-');
 
 #Add SEO Ultimate pluging metas
 INSERT INTO wp_postmeta (post_id,meta_key, meta_value)
@@ -140,11 +141,11 @@ SELECT id,'_su_rich_snippet_type', 'none'
 FROM keywordslist;
 
 #Add category
-INSERT INTO wp_terms(name,slug,term_id,term_group)
-VALUES ('blog','blog','100','0');
+#INSERT INTO wp_terms(name,slug,term_id,term_group)
+#VALUES ('blog','blog','100','0');
 
-INSERT INTO wp_term_taxonomy(term_taxonomy_id,term_id,taxonomy,description,parent,count)
-VALUES ('100','100','category','','0','0');
+#INSERT INTO wp_term_taxonomy(term_taxonomy_id,term_id,taxonomy,description,parent,count)
+#VALUES ('100','100','category','','0','0');
 
 #Add posts to category
 INSERT INTO wp_term_relationships (object_id,term_taxonomy_id)
