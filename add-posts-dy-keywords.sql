@@ -28,7 +28,7 @@ SELECT
 id,
 keyword1,
 Concat('http://localhost/?p=',keyword1),
-CONCAT('[:en]',keyword1 ,' Online in Tanzania - Best Betting Site | Place a bet with legal bookmaker[:sw]', keyword2 , 'mitandaoni Tanzania - Kubeti michezo mitandaoni Tanzania[:]'),
+CONCAT('[:en]',keyword1 ,' Online in Tanzania - Best Betting Site | Place a bet with legal bookmaker Parimatch[:sw]', keyword2 , 'mitandaoni Tanzania - Kubeti michezo mitandaoni Tanzania Parimatch[:]'),
 Concat('[:en]
 <h1 class="title">All-in-one trend, or ', keyword1 ,'  tutorial</h1>
 <h2> What ', keyword1 ,'  means: general information </h2>
@@ -133,7 +133,7 @@ SET post_name = REPLACE(post_name, ' ', '-');
 
 #Add SEO Ultimate pluging metas
 INSERT INTO wp_postmeta (post_id,meta_key, meta_value)
-SELECT id,'_su_title', CONCAT('[:en]'keyword1,' Online in Tanzania – Best Betting Site | Place a bet with legal bookmaker[:sw]', keyword2 ,' mitandaoni Tanzania - Kubeti michezo mitandaoni Tanzania[:]')
+SELECT id,'_su_title', CONCAT('[:en]',keyword1,' Online in Tanzania – Best Betting Site | Place a bet with legal bookmaker Parimatch[:sw]', keyword2 ,' mitandaoni Tanzania - Kubeti michezo mitandaoni Tanzania Parimatch[:]')
 FROM keywordslist;
 INSERT INTO wp_postmeta (post_id,meta_key, meta_value)
 SELECT id,'_su_description', CONCAT('[:en]', keyword1 ,' ☝ Best Online Betting Company in Tanzania ▷ Official Bookmaker ▷ Get a Bonus  ▷ Play with us and win![:sw]', keyword2 ,' mitandaoni Tanzania ☝ mtandao wa kampuni bora ya kubeti Tanzania ▷ Official Bookmaker ▷ Download App ya simu za mkononi[:]')
@@ -156,5 +156,3 @@ FROM keywordslist;
 
 
 DROP TABLE keywordslist;
-
-# TODO: add ' | Parimatch' to <title>
